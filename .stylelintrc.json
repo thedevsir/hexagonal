@@ -2,12 +2,20 @@
   "extends": [
     "stylelint-config-standard",
     "stylelint-config-sass-guidelines",
-    "stylelint-config-concentric-order"
+    "stylelint-config-concentric-order",
+    "stylelint-config-prettier"
   ],
   "ignoreFiles": ["+(build|node_modules|public)/**/*", "src/**/*.css"],
   "rules": {
     "color-hex-case": "upper",
     "order/properties-alphabetical-order": null,
-    "selector-max-id": 0
+    "selector-max-id": 0,
+    "selector-class-pattern": [
+      "^[a-z_-]+$",
+      {
+        "resolveNestedSelectors": true
+      }
+    ],
+    "scss/percent-placeholder-pattern": "^[a-z_-]+$"
   }
 }
