@@ -1,4 +1,5 @@
 const path = require('path');
+const cloneDeep = require('lodash.clonedeep');
 
 const rewireHotLoader = require('react-app-rewire-hot-loader');
 const rewireDll = require('react-app-rewire-dll');
@@ -49,10 +50,11 @@ module.exports = (config, env) => {
 
     // rewire css modules
     const cssRule = findRule(config.module.rules, cssRuleMatcher);
-    const sassRule = { ...cssRule };
-    const cssModulesRule = { ...cssRule };
+    const sassRule = cloneDeep(cssRule);
+    const cssModulesRule = cloneDeep(cssRule);
 
     cssRule.exclude = /\.module\.css$/;
+    cssModulesRule.test = /\.module\.css$/;
 
     const cssModulesRuleCssLoader = findRule(cssModulesRule, cssLoaderMatcher);
     cssModulesRuleCssLoader.options = {
@@ -63,15 +65,25 @@ module.exports = (config, env) => {
     };
     addBeforeRule(config.module.rules, fileLoaderMatcher, cssModulesRule);
 
+    const sassResourcesLoader = {
+        loader: require.resolve('sass-resources-loader'),
+        options: {
+            resources: path.resolve(__dirname, 'src/app/shared/scss/main.scss'),
+        },
+    };
+    const sassLoader = require.resolve('sass-loader');
+
     sassRule.test = /\.scss$/;
     sassRule.exclude = /\.module\.scss$/;
-    addAfterRule(sassRule, postcssLoaderMatcher, require.resolve('sass-loader'));
+    addAfterRule(sassRule, postcssLoaderMatcher, sassResourcesLoader);
+    addAfterRule(sassRule, postcssLoaderMatcher, sassLoader);
     addBeforeRule(config.module.rules, fileLoaderMatcher, sassRule);
 
-    const sassModulesRule = { ...cssModulesRule };
+    const sassModulesRule = cloneDeep(cssModulesRule);
 
     sassModulesRule.test = /\.module\.scss$/;
-    addAfterRule(sassModulesRule, postcssLoaderMatcher, require.resolve('sass-loader'));
+    addAfterRule(sassModulesRule, postcssLoaderMatcher, sassResourcesLoader);
+    addAfterRule(sassModulesRule, postcssLoaderMatcher, sassLoader);
     addBeforeRule(config.module.rules, fileLoaderMatcher, sassModulesRule);
 
     return config;
