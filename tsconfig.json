@@ -1,28 +1,38 @@
 {
   "compilerOptions": {
-    "outDir": "build/dist",
-    "module": "esnext",
+    /* Basic Options */
     "target": "es5",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "lib": ["es6", "dom"],
-    "sourceMap": true,
+    "module": "esnext",
+    "lib": ["dom", "es2015"],
     "allowJs": true,
+    "checkJs": true,
     "jsx": "react",
-    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "build/dist",
     "rootDir": "src",
-    "forceConsistentCasingInFileNames": true,
+    "removeComments": true,
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    "downlevelIteration": true,
+
+    /* Strict Type-Checking Options */
+    "strict": true,
     "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-    "allowSyntheticDefaultImports": true,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "suppressImplicitAnyIndexErrors": true,
+
+    /* Module Resolution Options */
+    "moduleResolution": "node",
     "baseUrl": "src",
     "paths": {},
-    "noEmitHelpers": true,
-    "importHelpers": true
+    "allowSyntheticDefaultImports": true,
+
+    /* Experimental Options */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "exclude": [
     "node_modules",
