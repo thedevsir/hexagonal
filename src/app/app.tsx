@@ -2,7 +2,8 @@ import React, { Component, StrictMode } from 'react';
 import { hot } from 'react-hot-loader';
 
 import styles from './app.module.scss';
-import logo from './logo.svg';
+// tslint:disable-next-line:no-submodule-imports
+import logo from 'assets/logo.svg';
 
 @hot(module)
 export class App extends Component {
