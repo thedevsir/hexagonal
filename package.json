@@ -8,7 +8,9 @@
     "analyze": "source-map-explorer build/static/js/main.*",
     "clean": "rimraf build",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "tslint-check": "tslint-config-prettier-check ./tslint.json",
+    "stylelint-check": "stylelint-config-prettier-check"
   },
   "dependencies": {
     "react": "^16.3.1",
@@ -49,6 +51,8 @@
       "git add"
     ],
     "*.{json,md}": ["prettier --write", "git add"],
-    "*.scss": ["stylelint --fix", "git add"]
+    "*.scss": ["stylelint --fix", "git add"],
+    "tslint.json": "npm run tslint-check",
+    ".stylelintrc.json": "npm run stylelint-check"
   }
 }

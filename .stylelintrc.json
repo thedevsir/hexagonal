@@ -7,7 +7,6 @@
   ],
   "ignoreFiles": ["+(build|node_modules|public)/**/*", "src/**/*.css"],
   "rules": {
-    "color-hex-case": "upper",
     "order/properties-alphabetical-order": null,
     "selector-max-id": 0,
     "selector-class-pattern": [
