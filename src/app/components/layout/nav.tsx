@@ -1,4 +1,5 @@
 import React, { SFC, DetailedHTMLProps, HTMLAttributes } from 'react';
+import classNames from 'classnames';
 
 import { Chip } from 'app/shared';
 
@@ -10,7 +11,7 @@ export type NavProps = DetailedHTMLProps<
 >;
 
 export const Nav: SFC<NavProps> = ({ className, ...rest }) => (
-  <nav className={`${styles.nav} ${className}`} {...rest}>
+  <nav className={classNames(styles.nav, className)} {...rest}>
     <Chip>
       <img
         src="https://avatars0.githubusercontent.com/u/1410429?s=460&v=4"
