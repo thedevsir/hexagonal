@@ -1,0 +1,15 @@
+.side-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 0 2px 6px rgba(#10161a, 0.2), 0 1px 1px rgba(#10161a, 0.2),
+    0 0 0 1px rgba(#10161a, 0.1);
+  background-color: #fff;
+  padding: 16px;
+  width: 259px;
+  height: 100vh;
+}
+
+.nav {
+  flex-direction: column;
+}

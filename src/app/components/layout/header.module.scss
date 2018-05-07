@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0 1px 5px -1px rgba(#10161a, 0.2);
+  background-color: #fbfbfb;
+  width: 100vw;
+  height: 50px;
+}
+
+.logo {
+  height: 32px;
+}
+
+.nav {
+  margin-right: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    justify-content: space-between;
+    padding: 0 4%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .header {
+    padding: 0 8%;
+  }
+}
