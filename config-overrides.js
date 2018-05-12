@@ -2,7 +2,8 @@ const path = require('path');
 const cloneDeep = require('lodash.clonedeep');
 
 const rewireHotLoader = require('react-app-rewire-hot-loader');
-const rewireDll = require('react-app-rewire-dll');
+
+const AutoDllPlugin = require('autodll-webpack-plugin');
 
 const pkg = require('./package.json');
 
@@ -41,13 +42,18 @@ module.exports = (config, env) => {
     rewireHotLoader(config, env);
 
     if (env === 'development') {
-        rewireDll({
-            entry: {
-                vendor: Object.keys(pkg.dependencies),
-            },
-            filename: '[name].dll.js',
-            path: 'static/js',
-        })(config, env);
+        config.plugins = [
+            ...config.plugins,
+            new AutoDllPlugin({
+                entry: {
+                    vendor: Object.keys(pkg.dependencies),
+                },
+                filename: '[name].dll.js',
+                path: 'static/js',
+                inject: true,
+                debug: true,
+            }),
+        ];
     }
 
     // rewire css modules
