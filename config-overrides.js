@@ -4,6 +4,8 @@ const cloneDeep = require('lodash.clonedeep');
 const rewireHotLoader = require('react-app-rewire-hot-loader');
 const rewireDll = require('react-app-rewire-dll');
 
+const pkg = require('./package.json');
+
 const ruleChildren = loader => loader.use || loader.oneOf || (Array.isArray(loader.loader) && loader.loader) || [];
 
 const findIndexAndRules = (rulesSource, ruleMatcher) => {
@@ -41,7 +43,7 @@ module.exports = (config, env) => {
     if (env === 'development') {
         rewireDll({
             entry: {
-                vendor: ['tslib', 'react', 'react-dom', 'react-router', 'react-router-dom'],
+                vendor: Object.keys(pkg.dependencies),
             },
             filename: '[name].dll.js',
             path: 'static/js',
