@@ -1,20 +1,18 @@
-import React, { ComponentType, MouseEventHandler } from 'react';
+import React, { ComponentType, MouseEventHandler, SFC } from 'react';
 
 import styles from './backdrop.module.scss';
-
-export type InjectedBackdropProps = {};
 
 export type BackdropProps = {
   show: boolean;
   onBackdropClick?: MouseEventHandler<HTMLElement>;
 };
 
-export const backdrop = <P extends InjectedBackdropProps>(
+export const backdrop = <P extends object>(
   WrappedComponent: ComponentType<P>
   // ignored because of typescript issue on generic types spread operation
   // https://github.com/Microsoft/TypeScript/issues/10727
   // @ts-ignore
-) => ({ show, onBackdropClick, ...props }: P & BackdropProps) => {
+): SFC<P & BackdropProps> => ({ show, onBackdropClick, ...rest }) => {
   let backdropElement: HTMLElement;
 
   const handleBackdropClick: MouseEventHandler<HTMLElement> = event => {
@@ -31,7 +29,7 @@ export const backdrop = <P extends InjectedBackdropProps>(
       ref={element => (backdropElement = element!)}
       onClick={handleBackdropClick}
     >
-      <WrappedComponent {...props} />
+      <WrappedComponent {...rest} />
     </div>
   ) : null;
 };

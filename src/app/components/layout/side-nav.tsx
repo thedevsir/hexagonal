@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { backdrop } from 'app/components';
+import { backdrop } from 'app/shared';
 
 import { Nav } from './nav';
 
