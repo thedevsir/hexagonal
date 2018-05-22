@@ -1,13 +1,11 @@
 import React, { Children, isValidElement } from 'react';
 import classNames from 'classnames';
 
-import { backdrop } from 'app/components';
+import { backdrop } from '../backdrop';
 
 import styles from './action-sheet.module.scss';
 
-export type ActionSheetProps = {};
-
-export const ActionSheet = backdrop<ActionSheetProps>(({ children }) => (
+export const ActionSheet = backdrop(({ children }) => (
   <ul className={styles.container}>
     {Children.map(
       children,
