@@ -20,7 +20,6 @@ export class Auth {
         when(() => !this._token, () => localStorage.removeItem(TOKEN_KEY));
     }
 
-    @computed
     get token() {
         return this._token;
     }
