@@ -15,6 +15,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
+    "formik": "^1.0.0-beta.2",
     "jwt-decode": "^2.2.0",
     "mobx": "^4.3.0",
     "mobx-react": "^5.1.2",
@@ -61,8 +62,14 @@
       "tslint --fix",
       "git add"
     ],
-    "*.{json,md}": ["prettier --write", "git add"],
-    "*.scss": ["stylelint --fix", "git add"],
+    "*.{json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.scss": [
+      "stylelint --fix",
+      "git add"
+    ],
     "tslint.json": "npm run tslint-check",
     ".stylelintrc.json": "npm run stylelint-check"
   }
