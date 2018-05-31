@@ -29,13 +29,13 @@ export class Auth {
         return this._token && this._token.isValid;
     }
 
-    async login({ remember = false, ...data }: LoginReqData & { remember: boolean }) {
+    async login({ remember = false, ...data }: LoginReqData & { remember?: boolean }) {
         const token = await AuthApi.login(data);
 
         this._setToken(token, remember);
     }
 
-    async register({ remember, ...data }: RegisterReqData & { remember: boolean }) {
+    async register({ remember = false, ...data }: RegisterReqData & { remember?: boolean }) {
         const token = await AuthApi.register(data);
 
         this._setToken(token, remember);
