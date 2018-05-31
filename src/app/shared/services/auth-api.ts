@@ -11,8 +11,7 @@ export type VerifyReqData = { email: string; key: string };
 
 export const AuthApi = {
     forgotPassword: (data: ForgotPasswordReqData) => axios.post('/login/forgot', data),
-    login: async ({ usernameOrEmail, password }: LoginReqData) =>
-        transformResponseToRawToken(await axios.post('/login', { password, username: usernameOrEmail })),
+    login: async (data: LoginReqData) => transformResponseToRawToken(await axios.post('/login', data)),
     logout: () => axios.delete('/logout'),
     register: async (data: RegisterReqData) => transformResponseToRawToken(await axios.post('/signup', data)),
     resendEmail: (data: ResendEmailReqData) => axios.post('/signup/resend-email', data),
