@@ -3,7 +3,7 @@ import { withRouter as router, Switch, RouteComponentProps } from 'react-router-
 import { Location } from 'history';
 
 import { GuestRoute } from 'app/shared';
-import { Login, LoginModal } from 'app/screens';
+import { Login, LoginModal, Register, RegisterModal } from 'app/screens';
 
 import { Header } from './header';
 import { SideNav } from './side-nav';
@@ -59,6 +59,7 @@ export const Layout = router(
                     <main>
                         <Switch location={prevLocation ? prevLocation : location}>
                             <GuestRoute path="/login" component={Login} />
+                            <GuestRoute path="/register" component={Register} />
                         </Switch>
                     </main>
                     <SideNav show={showSideNav} onBackdropClick={() => this.setState({ showSideNav: false })} />
@@ -67,6 +68,10 @@ export const Layout = router(
                         onBackdropClick={this._handleModalClose}
                     >
                         <GuestRoute path="/login" render={props => <LoginModal {...props} onRequestClose={this._handleModalClose} />} />
+                        <GuestRoute
+                            path="/register"
+                            render={props => <RegisterModal {...props} onRequestClose={this._handleModalClose} />}
+                        />
                     </BackdropSwitch>
                 </>
             );
