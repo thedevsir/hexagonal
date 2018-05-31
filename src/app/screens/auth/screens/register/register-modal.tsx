@@ -1,0 +1,69 @@
+import React, { SFC } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
+import { inject, observer } from 'mobx-react';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+
+import { catchApiError } from 'utils';
+import { BackdropLink, AUTH, Auth } from 'app/shared';
+import { Modal, Status, Input, Button } from 'app/screens/auth/shared';
+
+export type RegisterModalProps = {
+    auth?: Auth;
+    onRequestClose?: () => void;
+} & RouteComponentProps<any>;
+
+export const RegisterModal = inject(AUTH)(
+    observer<SFC<RegisterModalProps>>(({ onRequestClose, history, location, auth }) => (
+        <Modal
+            title="REGISTER"
+            footer={
+                <>
+                    <span>
+                        Already have an account ? <BackdropLink to="/login">Login</BackdropLink>
+                    </span>
+                    <br />
+                    <span>
+                        Send another <BackdropLink to="/resend-email">activation mail</BackdropLink>
+                    </span>
+                </>
+            }
+            onRequestClose={onRequestClose}
+            flat={history.action === 'POP' || !location.state || !location.state.backdrop}
+        >
+            <Formik
+                initialValues={{
+                    email: '',
+                    name: '',
+                    password: '',
+                    username: '',
+                }}
+                validationSchema={Yup.object().shape({
+                    email: Yup.string()
+                        .email()
+                        .required()
+                        .label('e-mail'),
+                    name: Yup.string().required(),
+                    password: Yup.string().required(),
+                    username: Yup.string().required(),
+                })}
+                onSubmit={(values, actions) => auth!.register(values).catch(catchApiError(actions))}
+            >
+                {({ status, isSubmitting }) => (
+                    <Form noValidate>
+                        {status && <Status>{status}</Status>}
+                        <Input name="name" placeholder="Name" />
+                        <Input name="username" placeholder="Username" />
+                        <Input type="email" name="email" placeholder="E-mail" />
+                        <Input type="password" name="password" placeholder="Password" />
+                        <Button type="submit" disabled={isSubmitting}>
+                            REGISTER
+                        </Button>
+                    </Form>
+                )}
+            </Formik>
+        </Modal>
+    ))
+);
+
+export const Register = RegisterModal;
