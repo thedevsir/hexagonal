@@ -1,0 +1,62 @@
+import React, { SFC } from 'react';
+import { inject, observer } from 'mobx-react';
+import { RouteComponentProps } from 'react-router-dom';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+
+import { BackdropLink, AUTH, Auth } from 'app/shared';
+import { Modal, Status, Input, Checkbox, Button } from 'app/screens/auth/shared';
+import { catchApiError } from 'utils';
+
+export type LoginModalProps = {
+    auth?: Auth;
+    onRequestClose?: () => void;
+} & RouteComponentProps<any>;
+
+export const LoginModal: SFC<LoginModalProps> = inject(AUTH)(
+    observer(({ onRequestClose, history, location, auth }) => (
+        <Modal
+            title="LOGIN"
+            footer={
+                <>
+                    <BackdropLink to="/forgot-password">Forgot password ?</BackdropLink>
+                    <br />
+                    <span>
+                        Don't have an account ? <BackdropLink to="/register">Register</BackdropLink>
+                    </span>
+                </>
+            }
+            onRequestClose={onRequestClose}
+            flat={history.action === 'POP' || !(location.state && location.state.backdrop)}
+        >
+            <Formik
+                initialValues={{
+                    password: '',
+                    remember: false,
+                    usernameOrEmail: '',
+                }}
+                validationSchema={Yup.object().shape({
+                    password: Yup.string().required(),
+                    usernameOrEmail: Yup.string()
+                        .required()
+                        .label('username or e-mail'),
+                })}
+                onSubmit={(values, actions) => auth!.login(values).catch(catchApiError(actions))}
+            >
+                {({ status, isSubmitting }) => (
+                    <Form>
+                        {status && <Status>{status}</Status>}
+                        <Input name="usernameOrEmail" placeholder="Username or E-mail" />
+                        <Input type="password" name="password" placeholder="Password" />
+                        <Checkbox name="remember" label="Remember Me" />
+                        <Button type="submit" disabled={isSubmitting}>
+                            LOGIN
+                        </Button>
+                    </Form>
+                )}
+            </Formik>
+        </Modal>
+    ))
+);
+
+export const Login = LoginModal;
