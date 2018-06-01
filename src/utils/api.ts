@@ -1,10 +1,12 @@
-import { AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosResponse, AxiosError, AxiosTransformer } from 'axios';
 import { FormikActions } from 'formik';
 
 type BaseResData = { [key: string]: any };
 type ValidationResData = BaseResData & { validation: { keys: string[] } };
 
-export const transformResponseToRawToken = (response: AxiosResponse<BaseResData>): string => response.data.authorization;
+export const defaultTransformers: AxiosTransformer[] = ([] as any[]).concat(axios.defaults.transformResponse);
+
+export const transformResponseToRawToken = (data: BaseResData) => data.authorization || data;
 
 /**
  * Joi validation error message transformer.

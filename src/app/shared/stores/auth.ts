@@ -30,13 +30,13 @@ export class Auth {
     }
 
     async login({ remember = false, ...data }: LoginReqData & { remember?: boolean }) {
-        const token = await AuthApi.login(data);
+        const { data: token } = await AuthApi.login(data);
 
         this._setToken(token, remember);
     }
 
     async register({ remember = false, ...data }: RegisterReqData & { remember?: boolean }) {
-        const token = await AuthApi.register(data);
+        const { data: token } = await AuthApi.register(data);
 
         this._setToken(token, remember);
     }
