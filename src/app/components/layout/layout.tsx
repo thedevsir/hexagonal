@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { withRouter as router, Switch, RouteComponentProps } from 'react-router-dom';
+import { withRouter as router, Switch, Route, RouteComponentProps } from 'react-router-dom';
 import { Location } from 'history';
 
 import { GuestRoute } from 'app/shared';
@@ -12,6 +12,7 @@ import {
     ForgotPasswordModal,
     ResendEmail,
     ResendEmailModal,
+    Verify,
 } from 'app/screens';
 
 import { Header } from './header';
@@ -71,6 +72,7 @@ export const Layout = router(
                             <GuestRoute path="/register" component={Register} />
                             <GuestRoute path="/forgot-password" component={ForgotPassword} />
                             <GuestRoute path="/resend-email" component={ResendEmail} />
+                            <Route path="/verify/:key" component={Verify} />
                         </Switch>
                     </main>
                     <SideNav show={showSideNav} onBackdropClick={() => this.setState({ showSideNav: false })} />
