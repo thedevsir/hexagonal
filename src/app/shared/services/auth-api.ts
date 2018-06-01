@@ -6,8 +6,8 @@ export type LoginReqData = { usernameOrEmail: string; password: string };
 export type RegisterReqData = { name: string; username: string; email: string; password: string };
 export type ForgotPasswordReqData = { email: string };
 export type ResendEmailReqData = ForgotPasswordReqData;
-export type ResetPasswordReqData = { email: string; key: string; password: string };
-export type VerifyReqData = { email: string; key: string };
+export type ResetPasswordReqData = { key: string; password: string };
+export type VerifyReqData = { key: string };
 
 export const AuthApi = {
     forgotPassword: (data: ForgotPasswordReqData) => axios.post('/login/forgot', data),
