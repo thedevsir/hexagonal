@@ -4,7 +4,7 @@ import { inject, observer } from 'mobx-react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { catchApiError } from 'utils';
+import { getFormStatusAndErrors } from 'utils';
 import { BackdropLink, AUTH, Auth } from 'app/shared';
 import { Modal, Status, Input, Button } from 'app/screens/auth/shared';
 
@@ -47,11 +47,18 @@ export const RegisterModal = inject(AUTH)(
                     password: Yup.string().required(),
                     username: Yup.string().required(),
                 })}
-                onSubmit={(values, actions) => auth!.register(values).catch(catchApiError(actions))}
+                onSubmit={async (values, { setSubmitting, setStatus, setErrors }) => {
+                    const { status, errors } = await getFormStatusAndErrors(auth!.register(values));
+
+                    setSubmitting(false);
+
+                    status && setStatus(status);
+                    errors && setErrors(errors);
+                }}
             >
                 {({ status, isSubmitting }) => (
                     <Form noValidate>
-                        {status && <Status>{status}</Status>}
+                        {status && <Status {...status} />}
                         <Input name="name" placeholder="Name" />
                         <Input name="username" placeholder="Username" />
                         <Input type="email" name="email" placeholder="E-mail" />

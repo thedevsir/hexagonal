@@ -4,9 +4,9 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
+import { getFormStatusAndErrors } from 'utils';
 import { BackdropLink, AUTH, Auth } from 'app/shared';
 import { Modal, Status, Input, Checkbox, Button } from 'app/screens/auth/shared';
-import { catchApiError } from 'utils';
 
 export type LoginModalProps = {
     auth?: Auth;
@@ -41,11 +41,18 @@ export const LoginModal: SFC<LoginModalProps> = inject(AUTH)(
                         .required()
                         .label('username or e-mail'),
                 })}
-                onSubmit={(values, actions) => auth!.login(values).catch(catchApiError(actions))}
+                onSubmit={async (values, { setSubmitting, setStatus, setErrors }) => {
+                    const { status, errors } = await getFormStatusAndErrors(auth!.login(values));
+
+                    setSubmitting(false);
+
+                    status && setStatus(status);
+                    errors && setErrors(errors);
+                }}
             >
                 {({ status, isSubmitting }) => (
                     <Form>
-                        {status && <Status>{status}</Status>}
+                        {status && <Status {...status} />}
                         <Input name="usernameOrEmail" placeholder="Username or E-mail" />
                         <Input type="password" name="password" placeholder="Password" />
                         <Checkbox name="remember" label="Remember Me" />

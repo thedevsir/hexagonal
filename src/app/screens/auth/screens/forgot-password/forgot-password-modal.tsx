@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { catchApiError } from 'utils';
+import { getFormStatusAndErrors } from 'utils';
 import { AuthApi } from 'app/shared';
 import { Modal, Status, Input, Button } from 'app/screens/auth/shared';
 
@@ -25,11 +25,18 @@ export const ForgotPasswordModal: SFC<ForgotPasswordModalProps> = ({ onRequestCl
                     .required()
                     .label('e-mail'),
             })}
-            onSubmit={(values, actions) => AuthApi.forgotPassword(values).catch(catchApiError(actions))}
+            onSubmit={async (values, { setStatus, setSubmitting, setErrors }) => {
+                const { status, errors } = await getFormStatusAndErrors(AuthApi.forgotPassword(values));
+
+                setSubmitting(false);
+
+                status && setStatus(status);
+                errors && setErrors(errors);
+            }}
         >
             {({ status, isSubmitting }) => (
                 <Form noValidate>
-                    {status && <Status>{status}</Status>}
+                    {status && <Status {...status} />}
                     <Input type="email" name="email" placeholder="E-mail" />
                     <Button type="submit" disabled={isSubmitting}>
                         RECOVER

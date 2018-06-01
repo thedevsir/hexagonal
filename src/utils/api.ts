@@ -1,5 +1,6 @@
 import axios, { AxiosResponse, AxiosError, AxiosTransformer } from 'axios';
-import { FormikActions } from 'formik';
+
+import { StatusModifier } from 'app/screens/auth/shared';
 
 type BaseResData = { [key: string]: any };
 type ValidationResData = BaseResData & { validation: { keys: string[] } };
@@ -12,7 +13,7 @@ export const transformResponseToRawToken = (data: BaseResData) => data.authoriza
  * Joi validation error message transformer.
  * nested parameters are not supported yet.
  */
-export const transformValidationErrors = ({ message, validation }: ValidationResData) => {
+export const transformResponseToValidationErrors = ({ message, validation }: ValidationResData) => {
     const regex = /because \["(.+?)"\s(.+?)\]/g;
 
     return validation.keys.filter(key => !!key).reduce((errors, fieldName, index) => {
@@ -26,17 +27,22 @@ export const transformValidationErrors = ({ message, validation }: ValidationRes
     }, {});
 };
 
-export const catchApiError = <V = any>({ setSubmitting, setStatus, setErrors }: FormikActions<V>) => ({ response }: AxiosError) => {
-    setSubmitting(false);
-    if (!response) {
-        return;
-    }
+export const getFormStatus = ({ status, data: { message } }: AxiosResponse) => ({
+    message,
+    modifier: status >= 200 && status < 300 ? StatusModifier.success : StatusModifier.error,
+});
 
-    const { status, data } = response as AxiosResponse<BaseResData>;
+export const getFormStatusAndErrors = (request: Promise<any>): Promise<{ status?: any; errors?: any }> =>
+    request.then(response => ({ status: getFormStatus(response) })).catch(({ response }: AxiosError) => {
+        if (!response) {
+            return {};
+        }
 
-    if (status !== 400 || !data.validation) {
-        setStatus(data.message);
-    } else {
-        setErrors(transformValidationErrors(data as ValidationResData));
-    }
-};
+        return response.data.validation
+            ? {
+                  errors: transformResponseToValidationErrors(response.data),
+              }
+            : {
+                  status: getFormStatus(response),
+              };
+    });
