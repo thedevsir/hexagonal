@@ -10,6 +10,7 @@ import {
     RegisterModal,
     ForgotPassword,
     ForgotPasswordModal,
+    ResetPassword,
     ResendEmail,
     ResendEmailModal,
     Verify,
@@ -73,6 +74,7 @@ export const Layout = router(
                             <GuestRoute path="/forgot-password" component={ForgotPassword} />
                             <GuestRoute path="/resend-email" component={ResendEmail} />
                             <Route path="/verify/:key" component={Verify} />
+                            <Route path="/reset-password/:key" component={ResetPassword} />
                         </Switch>
                     </main>
                     <SideNav show={showSideNav} onBackdropClick={() => this.setState({ showSideNav: false })} />
