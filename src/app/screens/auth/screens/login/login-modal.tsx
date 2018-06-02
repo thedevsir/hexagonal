@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 
 import { getFormStatusAndErrors } from 'utils';
 import { BackdropLink, AUTH, Auth } from 'app/shared';
-import { Modal, Status, Input, Checkbox, Button } from 'app/screens/auth/shared';
+import { Modal, Status, Input, Button } from 'app/screens/auth/shared';
 
 export type LoginModalProps = {
     auth?: Auth;
@@ -32,7 +32,6 @@ export const LoginModal: SFC<LoginModalProps> = inject(AUTH)(
             <Formik
                 initialValues={{
                     password: '',
-                    remember: false,
                     usernameOrEmail: '',
                 }}
                 validationSchema={Yup.object().shape({
@@ -55,7 +54,6 @@ export const LoginModal: SFC<LoginModalProps> = inject(AUTH)(
                         {status && <Status {...status} />}
                         <Input name="usernameOrEmail" placeholder="Username or E-mail" />
                         <Input type="password" name="password" placeholder="Password" />
-                        <Checkbox name="remember" label="Remember Me" />
                         <Button type="submit" disabled={isSubmitting}>
                             LOGIN
                         </Button>

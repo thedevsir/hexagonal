@@ -1,4 +1,4 @@
-import { observable, action, computed, when } from 'mobx';
+import { observable, action, computed, reaction } from 'mobx';
 
 import { Token } from 'utils';
 import { LoginReqData, AuthApi, RegisterReqData } from 'app/shared';
@@ -17,7 +17,7 @@ export class Auth {
     @observable private _token = Token.fromLocalStorage<TokenPayload>(TOKEN_KEY);
 
     constructor() {
-        when(() => !this._token, () => localStorage.removeItem(TOKEN_KEY));
+        reaction(() => this._token, token => (token ? localStorage.setItem(TOKEN_KEY, `${token}`) : localStorage.removeItem(TOKEN_KEY)));
     }
 
     get token() {
@@ -29,16 +29,16 @@ export class Auth {
         return this._token && this._token.isValid;
     }
 
-    async login({ remember = false, ...data }: LoginReqData & { remember?: boolean }) {
+    async login(data: LoginReqData) {
         const { data: token } = await AuthApi.login(data);
 
-        this._setToken(token, remember);
+        this._setToken(token);
     }
 
-    async register({ remember = false, ...data }: RegisterReqData & { remember?: boolean }) {
+    async register(data: RegisterReqData) {
         const { data: token } = await AuthApi.register(data);
 
-        this._setToken(token, remember);
+        this._setToken(token);
     }
 
     @action
@@ -48,8 +48,7 @@ export class Auth {
     }
 
     @action
-    private _setToken(token: string, remember: boolean) {
+    private _setToken(token: string) {
         this._token = new Token(token);
-        remember && localStorage.setItem(TOKEN_KEY, token);
     }
 }
