@@ -4,8 +4,8 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { getFormStatusAndErrors } from 'utils';
-import { AuthApi } from 'app/shared';
-import { Modal, Status, StatusModifier, Input, Button } from 'app/screens/auth/shared';
+import { AuthApi, Button } from 'app/shared';
+import { Modal, Status, StatusModifier, Input } from 'app/screens/auth/shared';
 
 export type ResetPasswordProps = RouteComponentProps<{ key: string }>;
 
