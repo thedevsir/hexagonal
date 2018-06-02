@@ -38,7 +38,7 @@ export const ResendEmailModal: SFC<ResendEmailModalProps> = ({ onRequestClose, h
                 <Form noValidate>
                     {status && <Status {...status} />}
                     <Input type="email" name="email" placeholder="E-mail" />
-                    <Button type="submit" disabled={isSubmitting}>
+                    <Button block large type="submit" disabled={isSubmitting}>
                         SEND E-MAIL
                     </Button>
                 </Form>

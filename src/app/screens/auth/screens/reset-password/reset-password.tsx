@@ -41,7 +41,7 @@ export const ResetPassword: SFC<ResetPasswordProps> = ({ history, match }) => (
                     {status && <Status {...status} />}
                     <Input type="password" name="password" placeholder="Password" />
                     <Input type="password" name="confirmPassword" placeholder="Confirm Password" />
-                    <Button type="submit" disabled={isSubmitting}>
+                    <Button block large type="submit" disabled={isSubmitting}>
                         LET'S GO
                     </Button>
                 </Form>

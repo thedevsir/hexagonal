@@ -63,7 +63,7 @@ export const RegisterModal = inject(AUTH)(
                         <Input name="username" placeholder="Username" />
                         <Input type="email" name="email" placeholder="E-mail" />
                         <Input type="password" name="password" placeholder="Password" />
-                        <Button type="submit" disabled={isSubmitting}>
+                        <Button block large type="submit" disabled={isSubmitting}>
                             REGISTER
                         </Button>
                     </Form>
