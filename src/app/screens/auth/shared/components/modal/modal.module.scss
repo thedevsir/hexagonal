@@ -95,9 +95,9 @@
     box-shadow: 0 1px 1px rgba(#10161a, 0.2), 0 2px 6px rgba(#10161a, 0.2);
     width: 375px;
     height: auto;
+  }
 
-    &--flat {
-      box-shadow: none;
-    }
+  .flat {
+    box-shadow: 0 1px 1px rgba(#10161a, 0.2);
   }
 }

@@ -11,7 +11,7 @@ export type ModalProps = {
 };
 
 export const Modal: SFC<ModalProps> = ({ flat, title, children, footer, onRequestClose }) => (
-    <div className={classNames(styles.container, flat && styles.containerFlat)}>
+    <div className={classNames(styles.container, flat && styles.flat)}>
         <div className={styles.header}>
             {onRequestClose && <button className={styles.closeButton} onClick={onRequestClose} />}
             <p className={styles.title}>{title}</p>
