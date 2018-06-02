@@ -19,8 +19,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({ name, ref, ...r
 
                     return (
                         <>
-                            <input className={classNames(styles.input, hasError && styles.inputError)} ref={ref} {...rest} {...field} />
-                            {hasError && <p className={styles.error}>{error}</p>}
+                            <input className={classNames(styles.input, hasError && styles.error)} ref={ref} {...rest} {...field} />
+                            {hasError && <p className={styles.errorMessage}>{error}</p>}
                         </>
                     );
                 }}

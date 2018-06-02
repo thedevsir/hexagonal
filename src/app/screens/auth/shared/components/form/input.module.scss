@@ -17,13 +17,13 @@
     color: #6d757a;
     user-select: none;
   }
-
-  &--error {
-    border-color: #dc5454;
-  }
 }
 
 .error {
+  border-color: #dc5454;
+}
+
+.error-message {
   margin: 8px 0 0;
   padding: 0 2px;
   color: #dc5454;
