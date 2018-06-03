@@ -1,78 +1,25 @@
-import React, { PureComponent } from 'react';
-import { withRouter as router, Switch, RouteComponentProps } from 'react-router-dom';
-import { Location } from 'history';
+import React from 'react';
+import { Switch } from 'react-router-dom';
 
 import { Header } from './header';
 import { SideNav } from './side-nav';
 import { BackdropSwitch } from './backdrop-switch';
 
-import styles from './layout.module.scss';
+import { LayoutContext } from './layout-context';
 
-export type LayoutProps = RouteComponentProps<{}>;
-
-export type LayoutState = {
-    showSideNav: boolean;
-    prevLocation?: Location;
-};
-
-export const Layout = router(
-    class extends PureComponent<LayoutProps, LayoutState> {
-        static displayName = 'Layout';
-
-        state: LayoutState = {
-            showSideNav: false,
-        };
-
-        sideNavToggle = () => (
-            <button
-                className={styles.sideNavToggle}
-                onClick={() =>
-                    this.setState({
-                        showSideNav: true,
-                    })
-                }
-            >
-                <span className={styles.sideNavToggleMiddleLine} />
-            </button>
-        );
-
-        static getDerivedStateFromProps({ location }: LayoutProps, { prevLocation }: LayoutState): Partial<LayoutState> | null {
-            if (prevLocation && location.state && location.state.backdrop) {
-                return {
-                    showSideNav: false,
-                };
-            }
-
-            return {
-                prevLocation: location,
-            };
-        }
-
-        render() {
-            const { location, history } = this.props;
-            const { showSideNav, prevLocation } = this.state;
-
-            return (
+export const Layout = () => (
+    <LayoutContext.Provider>
+        <LayoutContext.Consumer>
+            {({ pseudoLocation, isSideNavOpen, setSideNavOpen, hasModal, closeModal }) => (
                 <>
-                    <Header sideNavToggle={this.sideNavToggle} />
+                    <Header onSideNavToggleClick={() => setSideNavOpen(true)} />
                     <main>
-                        <Switch location={prevLocation ? prevLocation : location} />
+                        <Switch location={pseudoLocation} />
                     </main>
-                    <SideNav show={showSideNav} onBackdropClick={() => this.setState({ showSideNav: false })} />
-                    <BackdropSwitch
-                        show={location.state && location.state.backdrop && prevLocation !== location}
-                        onBackdropClick={() =>
-                            history.push({
-                                pathname: '/',
-                                ...prevLocation,
-                                state: {
-                                    backdrop: false,
-                                },
-                            })
-                        }
-                    />
+                    <SideNav show={isSideNavOpen} onBackdropClick={() => setSideNavOpen(false)} />
+                    <BackdropSwitch show={hasModal} onBackdropClick={closeModal} />
                 </>
-            );
-        }
-    }
+            )}
+        </LayoutContext.Consumer>
+    </LayoutContext.Provider>
 );
