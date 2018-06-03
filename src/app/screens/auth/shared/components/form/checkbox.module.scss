@@ -1,0 +1,14 @@
+.container {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 12px;
+  cursor: pointer;
+  padding: 1px;
+  color: #6d757a;
+  user-select: none;
+}
+
+.checkbox {
+  margin-right: 8px;
+  cursor: pointer;
+}
