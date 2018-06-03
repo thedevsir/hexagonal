@@ -20,8 +20,7 @@ export const AuthApi = {
 
     logout: (config?: AxiosRequestConfig) => axios.delete('/logout', config),
 
-    register: (data: RegisterReqData, config?: AxiosRequestConfig) =>
-        axios.post<string>('/signup', data, { ...config, transformResponse: [...defaultTransformers, transformResponseToRawToken] }),
+    register: (data: RegisterReqData, config?: AxiosRequestConfig) => axios.post<string>('/signup', data, config),
 
     resendEmail: (data: ResendEmailReqData, config?: AxiosRequestConfig) => axios.post('/signup/resend-email', data, config),
 

@@ -1,4 +1,4 @@
-import { observable, action, computed, reaction } from 'mobx';
+import { observable, action, computed, reaction, runInAction } from 'mobx';
 
 import { Token } from 'utils';
 import { LoginReqData, AuthApi, RegisterReqData } from 'app/shared';
@@ -32,23 +32,12 @@ export class Auth {
     async login(data: LoginReqData) {
         const { data: token } = await AuthApi.login(data);
 
-        this._setToken(token);
-    }
-
-    async register(data: RegisterReqData) {
-        const { data: token } = await AuthApi.register(data);
-
-        this._setToken(token);
+        runInAction(() => (this._token = new Token(token)));
     }
 
     @action
     logout() {
         AuthApi.logout();
         this._token = null;
-    }
-
-    @action
-    private _setToken(token: string) {
-        this._token = new Token(token);
     }
 }
