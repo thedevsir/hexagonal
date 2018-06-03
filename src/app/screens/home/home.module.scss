@@ -1,0 +1,15 @@
+.intro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  text-shadow: 0 0 16px rgba(#848e93, 0.32);
+  color: rgba(#4d555a, 0.32);
+  font-size: 16vw;
+  font-weight: 100;
+
+  @media screen and (min-width: 768px) {
+    font-size: 8vw;
+  }
+}

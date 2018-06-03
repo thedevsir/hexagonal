@@ -1,7 +1,7 @@
 import { observable, action, computed, reaction, runInAction } from 'mobx';
 
 import { Token } from 'utils';
-import { LoginReqData, AuthApi, RegisterReqData } from 'app/shared';
+import { LoginReqData, AuthApi } from 'app/shared';
 
 export const AUTH = 'auth';
 
