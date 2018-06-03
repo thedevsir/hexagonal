@@ -1,5 +1,8 @@
 .header {
   display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
   flex-direction: row-reverse;
   align-items: center;
   justify-content: space-around;

@@ -7,15 +7,17 @@ import { BackdropSwitch } from './backdrop-switch';
 
 import { LayoutContext } from './layout-context';
 
+import styles from './layout.module.scss';
+
 export const Layout = () => (
     <LayoutContext.Provider>
         <LayoutContext.Consumer>
             {({ pseudoLocation, isSideNavOpen, setSideNavOpen, hasModal, closeModal }) => (
                 <>
-                    <Header onSideNavToggleClick={() => setSideNavOpen(true)} />
-                    <main>
+                    <main className={styles.main}>
                         <Switch location={pseudoLocation} />
                     </main>
+                    <Header onSideNavToggleClick={() => setSideNavOpen(true)} />
                     <SideNav show={isSideNavOpen} onBackdropClick={() => setSideNavOpen(false)} />
                     <BackdropSwitch show={hasModal} onBackdropClick={closeModal} />
                 </>
