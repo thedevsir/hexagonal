@@ -1,0 +1,28 @@
+.button {
+  outline: none;
+  border: 0;
+  border-radius: 3px;
+  background-color: #636c79;
+  cursor: pointer;
+  padding: 5px 10px;
+  min-width: 32px;
+  min-height: 32px;
+  text-align: center;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  &:disabled {
+    background-color: #848c9a;
+  }
+}
+
+.large {
+  padding: 16px 32px;
+  font-size: 1rem;
+}
+
+.block {
+  display: block;
+  width: 100%;
+}
