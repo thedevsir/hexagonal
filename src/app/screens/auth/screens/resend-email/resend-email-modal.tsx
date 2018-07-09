@@ -4,7 +4,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { getFormStatusAndErrors } from 'utils';
-import { AuthApi, Button } from 'app/shared';
+import { AuthApi, Button, ButtonModifier } from 'app/shared';
 import { Modal, Status, Input } from 'app/screens/auth/shared';
 
 export type ResendEmailModalProps = { onRequestClose?: () => void } & RouteComponentProps<any>;
@@ -38,7 +38,7 @@ export const ResendEmailModal: SFC<ResendEmailModalProps> = ({ onRequestClose, h
                 <Form noValidate>
                     {status && <Status {...status} />}
                     <Input type="email" name="email" placeholder="E-mail" />
-                    <Button block large type="submit" disabled={isSubmitting}>
+                    <Button block large modifier={ButtonModifier.primary} type="submit" disabled={isSubmitting}>
                         SEND E-MAIL
                     </Button>
                 </Form>

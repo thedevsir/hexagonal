@@ -4,7 +4,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { getFormStatusAndErrors } from 'utils';
-import { AuthApi, Button } from 'app/shared';
+import { AuthApi, Button, ButtonModifier } from 'app/shared';
 import { Modal, Status, StatusModifier, Input } from 'app/screens/auth/shared';
 
 export type ResetPasswordProps = RouteComponentProps<{ key: string }>;
@@ -41,7 +41,7 @@ export const ResetPassword: SFC<ResetPasswordProps> = ({ history, match }) => (
                     {status && <Status {...status} />}
                     <Input type="password" name="password" placeholder="Password" />
                     <Input type="password" name="confirmPassword" placeholder="Confirm Password" />
-                    <Button block large type="submit" disabled={isSubmitting}>
+                    <Button block large modifier={ButtonModifier.primary} type="submit" disabled={isSubmitting}>
                         LET'S GO
                     </Button>
                 </Form>

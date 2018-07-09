@@ -5,7 +5,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { getFormStatusAndErrors } from 'utils';
-import { AUTH, Auth, BackdropLink, Button } from 'app/shared';
+import { AUTH, Auth, BackdropLink, Button, ButtonModifier } from 'app/shared';
 import { Modal, Status, Input } from 'app/screens/auth/shared';
 
 export type LoginModalProps = {
@@ -54,7 +54,7 @@ export const LoginModal: SFC<LoginModalProps> = inject(AUTH)(
                         {status && <Status {...status} />}
                         <Input name="usernameOrEmail" placeholder="Username or E-mail" />
                         <Input type="password" name="password" placeholder="Password" />
-                        <Button block large type="submit" disabled={isSubmitting}>
+                        <Button block large modifier={ButtonModifier.primary} type="submit" disabled={isSubmitting}>
                             LOGIN
                         </Button>
                     </Form>
