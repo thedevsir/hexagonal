@@ -1,0 +1,18 @@
+.tab {
+  display: inline-block;
+  margin-right: 4px;
+  border-radius: 4px;
+  padding: 4px 16px;
+  text-decoration: none;
+  color: #959ba5;
+  font-size: 14pt;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.active {
+  background-color: #fff;
+  color: #5a6977;
+}
