@@ -15,15 +15,17 @@ export const Tabs = router<TabsProps>(({ children, match }) => {
     return (
         <div className={styles.container}>
             <div className={styles.tabs}>{children}</div>
-            <Switch>
-                {childrenProps
-                    .map(({ component, to }) => ({
-                        component,
-                        path: typeof to === 'string' ? to : (to.pathname as string),
-                    }))
-                    .map(props => <Route key={props.path} {...props} />)}
-                <Redirect from={match.path} to={(childrenProps.find(props => !!props.default) || childrenProps[0]).to} />
-            </Switch>
+            <div className={styles.panel}>
+                <Switch>
+                    {childrenProps
+                        .map(({ component, to }) => ({
+                            component,
+                            path: typeof to === 'string' ? to : (to.pathname as string),
+                        }))
+                        .map(props => <Route key={props.path} {...props} />)}
+                    <Redirect exact from={match.path} to={(childrenProps.find(props => !!props.default) || childrenProps[0]).to} />
+                </Switch>
+            </div>
         </div>
     );
 });
