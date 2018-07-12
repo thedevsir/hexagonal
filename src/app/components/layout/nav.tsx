@@ -9,28 +9,26 @@ import { LayoutContext } from './layout-context';
 
 import styles from './nav.module.scss';
 
-export type NavProps = { auth?: Auth; className?: string } & RouteComponentProps<any>;
+export type NavInnerProps = { auth?: Auth; className?: string } & RouteComponentProps<undefined>;
 
-export const Nav = router(
-    inject(AUTH)(
-        observer<SFC<NavProps>>(({ auth, className, location }) => (
-            <nav className={classNames(styles.nav, className)}>
-                {auth!.isAuthenticated ? (
-                    <>
-                        <Chip>
-                            <img src="https://avatars0.githubusercontent.com/u/1410429?s=460&v=4" alt="avatar" className={styles.avatar} />
-                            <span>{auth!.token!.payload!.user.username}</span>
-                        </Chip>
-                        <Button modifier={ButtonModifier.Primary} onClick={() => auth!.logout()}>
-                            LOG OUT
-                        </Button>
-                    </>
-                ) : (
-                    <LayoutContext.Consumer>
-                        {({ hasModal }) => (location.pathname !== '/login' || hasModal) && <BackdropLink to="/login">LOGIN</BackdropLink>}
-                    </LayoutContext.Consumer>
-                )}
-            </nav>
-        ))
-    )
+export const NavInner: SFC<NavInnerProps> = ({ auth, className, location }) => (
+    <nav className={classNames(styles.nav, className)}>
+        {auth!.isAuthenticated ? (
+            <>
+                <Chip>
+                    <img src="https://avatars0.githubusercontent.com/u/1410429?s=460&v=4" alt="avatar" className={styles.avatar} />
+                    <span>{auth!.token!.payload!.user.username}</span>
+                </Chip>
+                <Button modifier={ButtonModifier.Primary} onClick={() => auth!.logout()}>
+                    LOG OUT
+                </Button>
+            </>
+        ) : (
+            <LayoutContext.Consumer>
+                {({ hasModal }) => (location.pathname !== '/login' || hasModal) && <BackdropLink to="/login">LOGIN</BackdropLink>}
+            </LayoutContext.Consumer>
+        )}
+    </nav>
 );
+
+export const Nav = router(inject(AUTH)(observer(NavInner)));
