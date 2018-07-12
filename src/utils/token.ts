@@ -1,5 +1,7 @@
 import jwtDecode from 'jwt-decode';
 
+import { deepTransformUnderscoredIdToId } from './api';
+
 export class Token<P extends { [key: string]: any }> {
     payload?: P;
 
@@ -10,7 +12,7 @@ export class Token<P extends { [key: string]: any }> {
 
     constructor(public raw: string) {
         try {
-            this.payload = jwtDecode(raw);
+            this.payload = deepTransformUnderscoredIdToId(jwtDecode(raw)) as P;
         } catch (error) {}
     }
 

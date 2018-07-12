@@ -1,0 +1,43 @@
+.session {
+  display: grid;
+  grid-template-rows: repeat(3, 20px);
+  grid-template-columns: 18px 2fr 2fr;
+  grid-auto-flow: column;
+  grid-gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  background-color: #f8f8f9;
+  padding: 10px;
+  width: 650px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.status {
+  justify-self: center;
+}
+
+.ip {
+  grid-row: 1;
+}
+
+.browser-and-os {
+  font-weight: 300;
+}
+
+.browser {
+  font-weight: 500;
+}
+
+.last-activity-at {
+  justify-self: end;
+}
+
+.button {
+  grid-row: 3;
+  align-self: end;
+  justify-self: end;
+}

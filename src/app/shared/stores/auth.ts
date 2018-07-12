@@ -9,6 +9,9 @@ export type TokenPayload = {
     user: {
         username: string;
     };
+    session: {
+        id: string;
+    };
 };
 
 const TOKEN_KEY = process.env.TOKEN_KEY!;

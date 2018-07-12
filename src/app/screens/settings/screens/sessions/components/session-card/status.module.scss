@@ -1,0 +1,14 @@
+.status {
+  border: 2px solid;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+}
+
+.online {
+  border-color: #7ed321;
+}
+
+.offline {
+  border-color: #ddd;
+}
