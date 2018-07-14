@@ -14,7 +14,11 @@ export type TokenPayload = {
 const TOKEN_KEY = process.env.TOKEN_KEY!;
 
 export class Auth {
-    @observable private _token = Token.fromLocalStorage<TokenPayload>(TOKEN_KEY);
+    @observable
+    private _token =
+        process.env.NODE_ENV === 'development' && process.env.TOKEN
+            ? new Token<TokenPayload>(process.env.TOKEN)
+            : Token.fromLocalStorage<TokenPayload>(TOKEN_KEY);
 
     constructor() {
         reaction(() => this._token, token => (token ? localStorage.setItem(TOKEN_KEY, `${token}`) : localStorage.removeItem(TOKEN_KEY)));
