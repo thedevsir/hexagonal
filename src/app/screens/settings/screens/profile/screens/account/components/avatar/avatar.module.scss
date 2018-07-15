@@ -1,0 +1,16 @@
+$padding: percentage(1 / 32);
+
+.avatar {
+  display: inline-block;
+  border-radius: 50%;
+  background-color: #5a6977;
+  max-width: 64px;
+  max-height: 64px;
+}
+
+.image {
+  margin: $padding;
+  border-radius: 50%;
+  width: calc(100% - #{2 * $padding});
+  height: calc(100% - #{2 * $padding});
+}
