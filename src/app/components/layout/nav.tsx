@@ -25,7 +25,13 @@ export const NavInner: SFC<NavInnerProps> = ({ auth, className, location }) => (
             </>
         ) : (
             <LayoutContext.Consumer>
-                {({ hasModal }) => (location.pathname !== '/login' || hasModal) && <BackdropLink to="/login">LOGIN</BackdropLink>}
+                {({ hasModal }) =>
+                    (location.pathname !== '/login' || hasModal) && (
+                        <Button as={BackdropLink} className={styles.loginButton} to="/login">
+                            Login
+                        </Button>
+                    )
+                }
             </LayoutContext.Consumer>
         )}
     </nav>
