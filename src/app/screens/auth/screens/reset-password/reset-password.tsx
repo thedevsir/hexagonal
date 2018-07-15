@@ -39,9 +39,9 @@ export const ResetPassword: SFC<ResetPasswordProps> = ({ history, match }) => (
             {({ status, isSubmitting }) => (
                 <Form noValidate>
                     {status && <Status {...status} />}
-                    <Input type="password" name="password" placeholder="Password" />
-                    <Input type="password" name="confirmPassword" placeholder="Confirm Password" />
-                    <Button block large modifier={ButtonModifier.primary} type="submit" disabled={isSubmitting}>
+                    <Input large name="password" type="password" placeholder="Password" />
+                    <Input large name="confirmPassword" type="password" placeholder="Confirm Password" />
+                    <Button block large type="submit" modifier={ButtonModifier.primary} disabled={isSubmitting}>
                         LET'S GO
                     </Button>
                 </Form>

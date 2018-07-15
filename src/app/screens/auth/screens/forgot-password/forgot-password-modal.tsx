@@ -37,8 +37,8 @@ export const ForgotPasswordModal: SFC<ForgotPasswordModalProps> = ({ onRequestCl
             {({ status, isSubmitting }) => (
                 <Form noValidate>
                     {status && <Status {...status} />}
-                    <Input type="email" name="email" placeholder="E-mail" />
-                    <Button block large modifier={ButtonModifier.primary} type="submit" disabled={isSubmitting}>
+                    <Input large name="email" type="email" placeholder="E-mail" />
+                    <Button block large type="submit" modifier={ButtonModifier.primary} disabled={isSubmitting}>
                         RECOVER
                     </Button>
                 </Form>

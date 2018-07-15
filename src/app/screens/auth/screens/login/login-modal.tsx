@@ -52,9 +52,9 @@ export const LoginModal: SFC<LoginModalProps> = inject(AUTH)(
                 {({ status, isSubmitting }) => (
                     <Form>
                         {status && <Status {...status} />}
-                        <Input name="usernameOrEmail" placeholder="Username or E-mail" />
-                        <Input type="password" name="password" placeholder="Password" />
-                        <Button block large modifier={ButtonModifier.primary} type="submit" disabled={isSubmitting}>
+                        <Input large name="usernameOrEmail" placeholder="Username or E-mail" />
+                        <Input large name="password" type="password" placeholder="Password" />
+                        <Button block large type="submit" modifier={ButtonModifier.primary} disabled={isSubmitting}>
                             LOGIN
                         </Button>
                     </Form>

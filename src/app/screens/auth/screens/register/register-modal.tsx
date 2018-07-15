@@ -54,11 +54,11 @@ export const RegisterModal: SFC<RegisterModalProps> = ({ onRequestClose, history
             {({ status, isSubmitting }) => (
                 <Form noValidate>
                     {status && <Status {...status} />}
-                    <Input name="name" placeholder="Name" />
-                    <Input name="username" placeholder="Username" />
-                    <Input type="email" name="email" placeholder="E-mail" />
-                    <Input type="password" name="password" placeholder="Password" />
-                    <Button block large modifier={ButtonModifier.primary} type="submit" disabled={isSubmitting}>
+                    <Input large name="name" placeholder="Name" />
+                    <Input large name="username" placeholder="Username" />
+                    <Input large name="email" type="email" placeholder="E-mail" />
+                    <Input large name="password" type="password" placeholder="Password" />
+                    <Button block large type="submit" modifier={ButtonModifier.primary} disabled={isSubmitting}>
                         REGISTER
                     </Button>
                 </Form>
