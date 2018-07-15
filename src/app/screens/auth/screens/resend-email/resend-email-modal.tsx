@@ -4,8 +4,8 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { getFormStatusAndErrors } from 'utils';
-import { AuthApi, Button, ButtonModifier } from 'app/shared';
-import { Modal, Status, Input } from 'app/screens/auth/shared';
+import { AuthApi, Input, Button, ButtonModifier } from 'app/shared';
+import { Modal, Status } from 'app/screens/auth/shared';
 
 export type ResendEmailModalProps = { onRequestClose?: () => void } & RouteComponentProps<any>;
 

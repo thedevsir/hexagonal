@@ -5,8 +5,8 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { getFormStatusAndErrors } from 'utils';
-import { AUTH, Auth, BackdropLink, Button, ButtonModifier } from 'app/shared';
-import { Modal, Status, Input } from 'app/screens/auth/shared';
+import { AUTH, Auth, BackdropLink, Input, Button, ButtonModifier } from 'app/shared';
+import { Modal, Status } from 'app/screens/auth/shared';
 
 export type LoginModalProps = {
     auth?: Auth;

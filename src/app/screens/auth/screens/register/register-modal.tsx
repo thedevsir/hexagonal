@@ -4,8 +4,8 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { getFormStatusAndErrors } from 'utils';
-import { AuthApi, BackdropLink, Button, ButtonModifier } from 'app/shared';
-import { Modal, Status, Input } from 'app/screens/auth/shared';
+import { AuthApi, BackdropLink, Input, Button, ButtonModifier } from 'app/shared';
+import { Modal, Status } from 'app/screens/auth/shared';
 
 export type RegisterModalProps = { onRequestClose?: () => void } & RouteComponentProps<any>;
 
