@@ -42,7 +42,7 @@ const addAfterRule = (rulesSource, ruleMatcher, value) => {
 module.exports = (config, env) => {
     rewireHotLoader(config, env);
 
-    config.plugins = [...config.plugins, new DotenvPlugin({ safe: true })];
+    config.plugins = [...config.plugins, new DotenvPlugin({ safe: true, systemvars: true })];
 
     if (env === 'development') {
         config.plugins = [
