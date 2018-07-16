@@ -1,0 +1,25 @@
+@include font-face(
+  IRANSansWeb,
+  'assets/fonts/iran-sans-web/IRANSansWeb-UltraLight',
+  200
+);
+
+@include font-face(
+  IRANSansWeb,
+  'assets/fonts/iran-sans-web/IRANSansWeb-Light',
+  300
+);
+
+@include font-face(IRANSansWeb, 'assets/fonts/iran-sans-web/IRANSansWeb', 400);
+
+@include font-face(
+  IRANSansWeb,
+  'assets/fonts/iran-sans-web/IRANSansWeb-Medium',
+  500
+);
+
+@include font-face(
+  IRANSansWeb,
+  'assets/fonts/iran-sans-web/IRANSansWeb-Bold',
+  700
+);

@@ -1,0 +1,48 @@
+@mixin font-face(
+  $name,
+  $path,
+  $weight: null,
+  $style: normal,
+  $exts: eot woff2 woff ttf
+) {
+  $filename: str-slice(
+    $path,
+    str-last-index($path, '/') + 1,
+    str-length($path)
+  );
+
+  $src: local(str-replace($filename, '-', ' ')), local($filename);
+
+  $extmods: (
+    eot: '?#iefix',
+    svg: '#' + str-replace($name, ' ', '_'),
+  );
+
+  $formats: (
+    eot: 'embedded-opentype',
+    otf: 'opentype',
+    ttf: 'truetype',
+  );
+
+  @each $ext in $exts {
+    $extmod: if(
+      map-has-key($extmods, $ext),
+      $ext + map-get($extmods, $ext),
+      $ext
+    );
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append(
+      $src,
+      url('#{$path}.#{$extmod}') format(quote($format)),
+      comma
+    );
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-weight: $weight;
+    font-style: $style;
+    src: url('#{$path}.eot');
+    src: $src;
+  }
+}

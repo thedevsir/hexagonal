@@ -1,0 +1,26 @@
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
+  }
+
+  @return $string;
+}
+
+@function str-last-index($string, $substr) {
+  $index: null;
+  $length: str-length($string);
+  @for $n from $length through 1 {
+    $index: str-index(str-slice($string, $n, $length), $substr);
+    @if $index {
+      @return $index + $n - 1;
+    }
+  }
+  @return $index;
+}
