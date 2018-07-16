@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { GuestRoute } from 'app/shared';
+import { GuestRoute, UserRoute } from 'app/shared';
 import {
     Home,
     Login,
@@ -14,6 +14,7 @@ import {
     ResendEmail,
     ResendEmailModal,
     Verify,
+    Settings,
 } from 'app/screens';
 
 import { Header } from './header';
@@ -38,6 +39,7 @@ export const Layout = () => (
                             <GuestRoute path="/resend-email" component={ResendEmail} />
                             <Route path="/verify/:key" component={Verify} />
                             <Route path="/reset-password/:key" component={ResetPassword} />
+                            <UserRoute path="/settings" component={Settings} />
                         </Switch>
                     </main>
                     <Header onSideNavToggleClick={() => setSideNavOpen(true)} />

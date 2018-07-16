@@ -4,8 +4,8 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { getFormStatusAndErrors } from 'utils';
-import { AuthApi, BackdropLink, Button } from 'app/shared';
-import { Modal, Status, Input } from 'app/screens/auth/shared';
+import { AuthApi, BackdropLink, Input, Button, ButtonModifier } from 'app/shared';
+import { Modal, Status } from 'app/screens/auth/shared';
 
 export type RegisterModalProps = { onRequestClose?: () => void } & RouteComponentProps<any>;
 
@@ -54,11 +54,11 @@ export const RegisterModal: SFC<RegisterModalProps> = ({ onRequestClose, history
             {({ status, isSubmitting }) => (
                 <Form noValidate>
                     {status && <Status {...status} />}
-                    <Input name="name" placeholder="Name" />
-                    <Input name="username" placeholder="Username" />
-                    <Input type="email" name="email" placeholder="E-mail" />
-                    <Input type="password" name="password" placeholder="Password" />
-                    <Button block large type="submit" disabled={isSubmitting}>
+                    <Input large name="name" placeholder="Name" />
+                    <Input large name="username" placeholder="Username" />
+                    <Input large name="email" type="email" placeholder="E-mail" />
+                    <Input large name="password" type="password" placeholder="Password" />
+                    <Button block large type="submit" modifier={ButtonModifier.primary} disabled={isSubmitting}>
                         REGISTER
                     </Button>
                 </Form>
