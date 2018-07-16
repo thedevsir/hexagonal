@@ -21,7 +21,7 @@ export const Nav = router(
                             <img src="https://avatars0.githubusercontent.com/u/1410429?s=460&v=4" alt="avatar" className={styles.avatar} />
                             <span>{auth!.token!.payload!.user.username}</span>
                         </Chip>
-                        <Button modifier={ButtonModifier.primary} onClick={() => auth!.logout()}>
+                        <Button modifier={ButtonModifier.Primary} onClick={() => auth!.logout()}>
                             LOG OUT
                         </Button>
                     </>

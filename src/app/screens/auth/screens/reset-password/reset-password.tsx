@@ -31,7 +31,7 @@ export const ResetPassword: SFC<ResetPasswordProps> = ({ history, match }) => (
                 status && setStatus(status);
                 errors && setErrors(errors);
 
-                if (status && status.modifier === StatusModifier.success && !errors) {
+                if (status && status.modifier === StatusModifier.Success && !errors) {
                     setTimeout(() => history.replace('/login'), 1000);
                 }
             }}
@@ -41,7 +41,7 @@ export const ResetPassword: SFC<ResetPasswordProps> = ({ history, match }) => (
                     {status && <Status {...status} />}
                     <Input large name="password" type="password" placeholder="Password" />
                     <Input large name="confirmPassword" type="password" placeholder="Confirm Password" />
-                    <Button block large type="submit" modifier={ButtonModifier.primary} disabled={isSubmitting}>
+                    <Button block large type="submit" modifier={ButtonModifier.Primary} disabled={isSubmitting}>
                         LET'S GO
                     </Button>
                 </Form>

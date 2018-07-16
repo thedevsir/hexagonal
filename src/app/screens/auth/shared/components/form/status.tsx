@@ -3,9 +3,9 @@ import classNames from 'classnames';
 
 import styles from './status.module.scss';
 
-export enum StatusModifier {
-    success,
-    error,
+export const enum StatusModifier {
+    Success,
+    Error,
 }
 
 export type StatusProps = {
@@ -13,8 +13,8 @@ export type StatusProps = {
     modifier?: StatusModifier;
 } & DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>;
 
-export const Status: SFC<StatusProps> = ({ modifier = StatusModifier.error, className, message, children, ...rest }) => (
-    <p className={classNames(styles.status, modifier === StatusModifier.success ? styles.success : styles.error, className)} {...rest}>
+export const Status: SFC<StatusProps> = ({ modifier = StatusModifier.Error, className, message, children, ...rest }) => (
+    <p className={classNames(styles.status, modifier === StatusModifier.Success ? styles.success : styles.error, className)} {...rest}>
         {message || children}
     </p>
 );

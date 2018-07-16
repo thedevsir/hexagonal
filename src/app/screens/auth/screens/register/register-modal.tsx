@@ -58,7 +58,7 @@ export const RegisterModal: SFC<RegisterModalProps> = ({ onRequestClose, history
                     <Input large name="username" placeholder="Username" />
                     <Input large name="email" type="email" placeholder="E-mail" />
                     <Input large name="password" type="password" placeholder="Password" />
-                    <Button block large type="submit" modifier={ButtonModifier.primary} disabled={isSubmitting}>
+                    <Button block large type="submit" modifier={ButtonModifier.Primary} disabled={isSubmitting}>
                         REGISTER
                     </Button>
                 </Form>

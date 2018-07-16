@@ -62,7 +62,7 @@ export const transformResponseToValidationErrors = ({ message, validation }: Val
 
 export const getFormStatus = ({ status, data: { message } }: AxiosResponse) => ({
     message,
-    modifier: status >= 200 && status < 300 ? StatusModifier.success : StatusModifier.error,
+    modifier: status >= 200 && status < 300 ? StatusModifier.Success : StatusModifier.Error,
 });
 
 export const getFormStatusAndErrors = (request: Promise<any>): Promise<{ status?: any; errors?: any }> =>
