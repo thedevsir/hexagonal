@@ -42,7 +42,7 @@ export const SessionCard: SFC<SessionCardProps> = ({
             <p>Creation Date: {shortDateFormat(createdAt)}</p>
             <p className={styles.lastActivityAt}>Last Activity Date: {shortDateFormat(lastActivityAt)}</p>
             {removable && (
-                <Button modifier={ButtonModifier.primary} className={styles.button} onClick={handleRemoveButtonClick}>
+                <Button modifier={ButtonModifier.Primary} className={styles.button} onClick={handleRemoveButtonClick}>
                     Remove Session
                 </Button>
             )}

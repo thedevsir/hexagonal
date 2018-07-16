@@ -42,7 +42,7 @@ export const Account = () => (
                         label="E-Mail"
                         hint="If you change your e-mail address then you should start verification process"
                     />
-                    <Button type="submit" modifier={ButtonModifier.primary} disabled={isSubmitting}>
+                    <Button type="submit" modifier={ButtonModifier.Primary} disabled={isSubmitting}>
                         Update
                     </Button>
                 </Form>

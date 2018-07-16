@@ -35,7 +35,7 @@ export const Password = () => {
                 <Form className={styles.form} noValidate>
                     <Input type="password" name="password" label="Current Password" />
                     <Input type="password" name="newPassword" label="New Password" />
-                    <Button type="submit" modifier={ButtonModifier.primary} disabled={isSubmitting}>
+                    <Button type="submit" modifier={ButtonModifier.Primary} disabled={isSubmitting}>
                         Change Password
                     </Button>
                 </Form>
