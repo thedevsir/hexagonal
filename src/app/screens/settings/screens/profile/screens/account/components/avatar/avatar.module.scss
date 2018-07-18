@@ -2,10 +2,36 @@ $padding: percentage(1 / 32);
 
 .avatar {
   display: inline-block;
+  position: relative;
   border-radius: 50%;
   background-color: #5a6977;
   max-width: 64px;
   max-height: 64px;
+
+  &.uploadable {
+    cursor: pointer;
+  }
+}
+
+.overlay {
+  display: flex;
+  position: absolute;
+  top: $padding;
+  left: $padding;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  border-radius: 50%;
+  background-color: rgba(#222, 0.5);
+  width: calc(100% - #{2 * $padding});
+  height: calc(100% - #{2 * $padding});
+  text-align: center;
+  color: #fff;
+  font-size: 32px;
+
+  .avatar:hover & {
+    visibility: visible;
+  }
 }
 
 .image {
@@ -13,4 +39,8 @@ $padding: percentage(1 / 32);
   border-radius: 50%;
   width: calc(100% - #{2 * $padding});
   height: calc(100% - #{2 * $padding});
+}
+
+.input {
+  display: none;
 }
