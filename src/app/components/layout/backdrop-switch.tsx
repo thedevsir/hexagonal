@@ -4,6 +4,4 @@ import { SwitchProps } from 'react-router';
 
 import { backdrop } from 'app/shared';
 
-export const BackdropSwitch = backdrop<SwitchProps>(props => (
-  <Switch {...props} />
-));
+export const BackdropSwitch = backdrop<SwitchProps>(props => <Switch {...props} />);

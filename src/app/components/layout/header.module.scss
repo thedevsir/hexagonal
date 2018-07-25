@@ -17,7 +17,25 @@
 }
 
 .nav {
+  display: flex;
   margin-right: auto;
+
+  > * {
+    margin-right: 8px;
+    margin-bottom: 0;
+  }
+}
+
+.avatar {
+  margin-right: 4px;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+}
+
+.login-button {
+  padding-right: 32px;
+  padding-left: 32px;
 }
 
 %side-nav-toggle-line {
