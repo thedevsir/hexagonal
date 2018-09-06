@@ -14,13 +14,13 @@ export type TokenPayload = {
     };
 };
 
-const TOKEN_KEY = process.env.TOKEN_KEY!;
+const TOKEN_KEY = process.env.REACT_APP_TOKEN_KEY!;
 
 export class Auth {
     @observable
     private _token =
-        process.env.NODE_ENV === 'development' && process.env.TOKEN
-            ? new Token<TokenPayload>(process.env.TOKEN)
+        process.env.NODE_ENV === 'development' && process.env.REACT_APP_TOKEN
+            ? new Token<TokenPayload>(process.env.REACT_APP_TOKEN)
             : Token.fromLocalStorage<TokenPayload>(TOKEN_KEY);
 
     constructor() {

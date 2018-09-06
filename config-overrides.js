@@ -4,7 +4,6 @@ const cloneDeep = require('lodash.clonedeep');
 const rewireHotLoader = require('react-app-rewire-hot-loader');
 
 const AutoDllPlugin = require('autodll-webpack-plugin');
-const DotenvPlugin = require('dotenv-webpack');
 
 const pkg = require('./package.json');
 
@@ -41,8 +40,6 @@ const addAfterRule = (rulesSource, ruleMatcher, value) => {
 
 module.exports = (config, env) => {
     rewireHotLoader(config, env);
-
-    config.plugins = [...config.plugins, new DotenvPlugin({ safe: true, systemvars: true })];
 
     if (env === 'development') {
         config.plugins = [
